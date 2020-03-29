@@ -1,0 +1,37 @@
+#Elliptic Curves over C
+sage: E=EllipticCurve([0,0,0,8,11])
+sage: E
+Elliptic Curve defined by y^2 = x^3 + 8*x + 11 over Rational Field
+sage: L=E.period_lattice().basis()
+sage: L
+(2.31624873340470, 1.15812436670235 + 0.902544892381088*I)
+sage: w1,w2=L
+sage: w1
+2.31624873340470
+sage: w2
+1.15812436670235 + 0.902544892381088*I
+sage: def G(n):
+....:     return [(EllipticCurve(GF(p),[1,1]).count_points(1)-p-1)/sqrt(p) for 
+....: p in (3,..,n) if is_prime(p) and p!= 31]
+sage: P = arrow((0,0),(2.31624873340470,0))
+sage: G = arrow((0,0),(1.15812436670235,0.902544892381088))
+sage: P+G
+sage:  F = arrow((2.31624873340470,0),(2.31624873340470+1.15812436670235,0.90254
+....: 4892381088), color='red')
+sage: E = arrow((1.15812436670235,0.902544892381088),(1.15812436670235+2.3162487
+....: 3340470,0.902544892381088),color='red')
+sage: P+G+F+E
+
+
+
+#Elliptic Curves over Finite Fields
+
+sage: def H(n):
+....:     return[(EllipticCurve(GF(p),[1,0]).count_points(1)-p-1)/sqrt(p) for p 
+....: in (3,..,n) if is_prime(p) and p!= 31]
+....:     
+
+sage: def L(n):
+....:      return[(EllipticCurve(GF(p),[1,0]).count_points(1)-p-1)/sqrt(p) for p
+....:  in (3,..,n) if p%4==3 and is_prime(p)]
+....:   
